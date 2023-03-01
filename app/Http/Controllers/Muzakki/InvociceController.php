@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Muzakki;
 
-use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Services\Midtrans\CreateSnapTokenService;
 
 class InvociceController extends Controller
 {
     public function index()
     {
-        $invoice = Invoice::with(['muzakki'])->where('muzakki_id', auth()->guard('muzakki')->user()->id)
-            ->where('status', '0')->first();
+        $invoice = Invoice::with(['muzakki'])->where('muzakki_id', auth()->guard('muzakki')->user()->id)->where('payment_status', '1')->first();
+
         return view('muzakki.invoice.index', [
             'invoice'   => $invoice,
             'title'     => 'Invoice'
@@ -21,33 +22,38 @@ class InvociceController extends Controller
     public function store(Request $request)
     {
         $muzakki_id = auth()->guard('muzakki')->user()->id;
-        $invoice = Invoice::with(['muzakki'])->where('muzakki_id', $muzakki_id)
-            ->where('status', '0')->first();
+        $invoice = Invoice::with(['muzakki'])->where('muzakki_id', $muzakki_id)->where('payment_status', '1')->first();
 
         if ($invoice) {
 
             $date = date('H:i:s');
             $moon = date('n');
             $year = date('Y');
-
-            $inv = Invoice::where('muzakki_id', $muzakki_id)->where('status', '0')->first();
+            $no_invoice = date('Y-m-d') . rand(100, 999);
 
             if ($request->category_id == 'null') {
-                $category_id = $inv->category_id;
+                $category_id = $invoice->category_id;
             } else {
                 $category_id = $request->category_id;
             };
 
-            $inv->update([
+            $invoice->update([
                 'muzakki_id'    => $muzakki_id,
                 'category_id'   => $category_id,
-                'nominal'       => $request->nominal ? $request->nominal : $inv->nominal,
+                'no_invoice'    => $no_invoice,
+                'snap_token'    => $invoice->snap_token,
+                'nominal'       => str_replace('.', '', $request->nominal ? $request->nominal : $invoice->nominal),
                 'jam'           => $date,
                 'bulan'         => $moon,
                 'tahun'         => $year,
-                'status'        => '0'
+                'payment_status'        => $invoice->payment_status
             ]);
-            return redirect('/muzakki/invoice');
+
+            //token 
+            $midtrans = new CreateSnapTokenService($invoice);
+            $snapToken = $midtrans->getSnapToken();
+
+            return redirect()->to('/muzakki/invoice?snapToken=' . $snapToken);
         }
 
         $request->validate([
@@ -62,17 +68,27 @@ class InvociceController extends Controller
         $date = date('H:i:s');
         $moon = date('n');
         $year = date('Y');
+        $no_invoice = date('Y-m-d') . rand(100, 999);
 
-        Invoice::create([
+        $invoice = Invoice::create([
             'muzakki_id'    => $muzakki_id,
             'category_id'   => $request->category_id,
-            'nominal'       => $request->nominal,
+            'no_invoice'    => $no_invoice,
+            'snap_token'    => 'null',
+            'nominal'       => str_replace('.', '', $request->nominal),
             'jam'           => $date,
             'bulan'         => $moon,
             'tahun'         => $year,
-            'status'        => '0'
+            'payment_status' => '1'
         ]);
 
-        return redirect('/muzakki/invoice');
+        //token 
+        $midtrans = new CreateSnapTokenService($invoice);
+        $snapToken = $midtrans->getSnapToken();
+
+        $invoice->snap_token = $snapToken;
+        $invoice->save();
+
+        return redirect()->to('/muzakki/invoice?snapToken=' . $snapToken);
     }
 }

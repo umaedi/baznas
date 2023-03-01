@@ -24,7 +24,7 @@
                     </button>
                     <p class="text-justify pr-5">
                         <em>
-                            <b>Assalamualikum Umaedi</b>, apa kabar hari
+                            <b>Assalamualikum {{ auth()->guard('muzakki')->user()->name }}</b>, apa kabar hari
                             ini?</em
                         >
                     </p>
@@ -54,7 +54,7 @@
                         <a href="{{ route('muzakki.zakat.pending') }}" style="text-decoration: none">
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>{{ __('Menunggu Verifikasi') }}</h4>
+                                <h4>{{ __('Menunggu Pembayaran') }}</h4>
                             </div>
                             <div class="card-body">{{ $pending }}</div>
                         </div>

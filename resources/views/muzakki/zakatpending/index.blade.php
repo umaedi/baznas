@@ -3,10 +3,10 @@
 <div class="main-content container">
     <section class="section">
       <div class="section-header">
-        <h1>{{ __("Menunggu Verifikasi") }}</h1>
+        <h1>{{ __("Menunggu Pembayaran") }}</h1>
         <div class="section-header-breadcrumb">
           <div class="breadcrumb-item active"><a href="{{ route('muzakki.dashboard') }}">Dashboard</a></div>
-          <div class="breadcrumb-item">Menunggu Verifikasi</div>
+          <div class="breadcrumb-item">Menunggu Pembayaran</div>
         </div>
       </div>
       <div class="card">

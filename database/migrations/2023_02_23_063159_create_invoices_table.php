@@ -17,12 +17,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('muzakki_id');
             $table->foreignId('category_id');
+            $table->string('no_invoice')->nullable();
+            $table->string('snap_token');
             $table->string('nominal');
             $table->string('jam');
             $table->string('bulan');
             $table->string('tahun');
-            $table->string('status');
             $table->string('struk')->nullable();
+            $table->enum('payment_status', ['1', '2', '3', '4'])->comment('1=menunggu pembayaran, 2=sudah dibayar, 3=kadaluarsa, 4=batal');
             $table->string('kwitansi')->nullable();
             $table->timestamps();
         });

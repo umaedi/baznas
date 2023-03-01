@@ -31,12 +31,12 @@
                     <span class="input-group-text"><a href="javascript:void(0)"><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
                   </div>
               </div>
-              <div class="form-group">
+              {{-- <div class="form-group">
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" name="remember" class="custom-control-input" value="remember" tabindex="3" id="remember-me">
                   <label class="custom-control-label" for="remember-me">{{ __('Ingat saya') }}</label>
                 </div>
-              </div>
+              </div> --}}
               <div class="form-group">
                 <button type="submit" id="btn-login" class="btn btn-primary btn-lg btn-block" tabindex="4">
                     {{ __('Masuk') }}

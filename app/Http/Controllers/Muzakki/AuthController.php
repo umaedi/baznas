@@ -47,14 +47,8 @@ class AuthController extends Controller
             return back()->with('error', 'Login gagal, pastikan email dan password benar!');
         }
 
-        if ($request->remember) {
-            $remember = $request->remember;
-        } else {
-            $remember = "";
-        }
-
         //login the user
-        auth()->guard('muzakki')->login($muzakki, $remember);
+        auth()->guard('muzakki')->login($muzakki, $request->remember);
 
         //rediriect to dashboard
         return redirect('/muzakki/dashboard');

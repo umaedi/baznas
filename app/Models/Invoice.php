@@ -11,6 +11,8 @@ class Invoice extends Model
     protected $fillable = [
         'muzakki_id',
         'category_id',
+        'no_invoice',
+        'snap_token',
         'nominal',
         'jam',
         'bulan',

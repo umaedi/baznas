@@ -19,7 +19,7 @@ class KonfirmasiController extends Controller
             'struk' => 'required|image|file|max:2048'
         ]);
 
-        $invoice = Invoice::where('muzakki_id', auth()->guard('muzakki')->user()->id)->where('status', '0')->first();
+        $invoice = Invoice::where('muzakki_id', auth()->guard('muzakki')->user()->id)->where('payment_status', '0')->first();
 
         if ($invoice) {
             $struk = $request->file('struk');

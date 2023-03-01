@@ -23,7 +23,7 @@ class RiwayatzakatController extends Controller
                 $invoice->where('category_id', \request()->category);
             }
 
-            $data['table'] = $invoice->where('status', '2')->latest()->paginate($page);
+            $data['table'] = $invoice->where('payment_status', '2')->latest()->paginate($page);
             return view('muzakki.riwayatzakat._table_data', $data);
         }
 

@@ -89,4 +89,7 @@ Route::prefix('muzakki')->group(function () {
     });
 });
 
+Route::post('payments/midtrans-notification', [\App\Http\Controllers\Muzakki\PaymentCallbackController::class, 'receive']);
+Route::get('/pembayaran_sukses', [\App\Http\Controllers\Muzakki\PaymentCallbackController::class, 'success']);
+
 Route::get('/ayozakat', AyozakatController::class);
