@@ -34,7 +34,7 @@ Route::prefix('amil')->group(function () {
         Route::controller(ZakatController::class)->group(function () {
             Route::get('/zakat/perlu_dikonfirmasi', 'index')->name('amil.zakat.needconfirm');
             Route::get('/zakat/dikonfirmasi', 'zakat_confirm')->name('zakat_confirm');
-            Route::get('/zakat/invoice/{id}', 'show')->name('amil.muzakki.show');
+            Route::get('/zakat/invoice/{id}', 'show')->name('amil.invoice.show');
         });
 
         Route::controller(MuzakiController::class)->group(function () {
