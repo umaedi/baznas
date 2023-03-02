@@ -48,7 +48,6 @@ Route::prefix('amil')->group(function () {
 
 Route::get('/', function () {
 
-    //cek session student
     if (auth()->guard('muzakki')->check()) {
         return redirect()->route('muzakki.dashboard');
     }
