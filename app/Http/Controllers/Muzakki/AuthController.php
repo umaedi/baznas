@@ -48,7 +48,7 @@ class AuthController extends Controller
         }
 
         //login the user
-        auth()->guard('muzakki')->login($muzakki, $request->remember);
+        auth()->guard('muzakki')->login($muzakki, 'remember');
 
         //rediriect to dashboard
         return redirect('/muzakki/dashboard');

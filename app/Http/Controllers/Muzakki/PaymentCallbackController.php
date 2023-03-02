@@ -50,6 +50,7 @@ class PaymentCallbackController extends Controller
 
     public function success()
     {
-        return view('muzakki.payment.index');
+        $title = "Pembayaran Sukses";
+        return view('muzakki.payment.index', compact('title'));
     }
 }

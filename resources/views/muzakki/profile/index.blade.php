@@ -60,14 +60,13 @@
                       </div>
                       <div class="form-group col-md-12 col-12">
                         <div class="input-group">
-                          <input type="password" class="form-control" id="password" name="password">
+                          <input type="password" class="form-control" id="password" name="password" placeholder="Password...">
                           <div class="input-group-prepend" id="show_hide_password">
                             <span class="input-group-text"><a href="javascript:void(0)"><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
                           </div>
                       </div>
                       </div>
                     </div>
-                    <a href="{{ route('muzakki.dashboard') }}" class="btn btn-primary btn-icon icon-left"><i class="fa fa-arrow-left"></i></a>
                     <button id="btn-login" class="btn btn-primary" type="submit">{{ __('Simpan perubahan') }}</button>
                 </div>
               </div>

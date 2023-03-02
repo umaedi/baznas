@@ -31,15 +31,9 @@ class InvociceController extends Controller
             $year = date('Y');
             $no_invoice = date('Y-m-d') . rand(100, 999);
 
-            if ($request->category_id == 'null') {
-                $category_id = $invoice->category_id;
-            } else {
-                $category_id = $request->category_id;
-            };
-
             $invoice->update([
                 'muzakki_id'    => $muzakki_id,
-                'category_id'   => $category_id,
+                'category_id'   => $request->category_id ? $request->category_id : $invoice->category_id,
                 'no_invoice'    => $no_invoice,
                 'snap_token'    => $invoice->snap_token,
                 'nominal'       => str_replace('.', '', $request->nominal ? $request->nominal : $invoice->nominal),

@@ -27,7 +27,7 @@ class SocialiteController extends Controller
         $authUser = $this->findOrCreateUser($muzakki, $provider);
 
         //login the user
-        Auth::guard('muzakki')->login($authUser, true);
+        Auth::guard('muzakki')->login($authUser, 'remember', true);
         return redirect('/muzakki/dashboard');
     }
 

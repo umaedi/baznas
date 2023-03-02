@@ -6,7 +6,7 @@
         <th scope="col">NOMINAL</th>
         <th scope="col">TANGGAL</th>
         <th scope="col">STATUS</th>
-        <th scope="col" class="text-center">STRUK</th>
+        <th scope="col">AKSI</th>
     </tr>
     </thead>
     <tbody id="data-barang">
@@ -16,12 +16,13 @@
             <td>{{ $tb->category->nama_kategori }}</td>
             <td>Rp.{{ $tb->nominal }}</td>
             <td>{{ $tb->created_at }}</td>
-            @if ($tb->status == '1')
-                <td>Menunggu Verifikasi</td>
-            @else
-                <td>Ditolak</td>
-            @endif
-            <td class="text-center"><a href="{{ asset('storage/image/struk/'.$tb->struk) }}" target="_blank"><i class="fa fa-2x fa-file-invoice"></i></a></td>
+            <td>Menunggu Pembayaran</td>
+            <td>
+                <form action="{{ route('muzakki.inovice.store') }}" method="POST">
+                    @csrf
+                    <button type="submit" href="{{ route('muzakki.invoice') }}" class="btn btn-primary">BAYAR</button>
+                </form>
+            </td>
         </tr>
         @empty
         <tr>

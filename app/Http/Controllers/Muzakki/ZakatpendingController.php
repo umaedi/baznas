@@ -23,7 +23,7 @@ class ZakatpendingController extends Controller
                 $invoice->where('category_id', \request()->category);
             }
 
-            $data['table'] = $invoice->where('payment_status', '1')->orWhere('payment_status', '3')->latest()->paginate($page);
+            $data['table'] = $invoice->where('payment_status', '1')->latest()->paginate($page);
             return view('muzakki.zakatpending._table_data', $data);
         }
 

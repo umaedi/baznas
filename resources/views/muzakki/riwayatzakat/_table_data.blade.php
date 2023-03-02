@@ -5,7 +5,6 @@
         <th scope="col">KATEGORI</th>
         <th scope="col">NOMINAL</th>
         <th scope="col">TANGGAL</th>
-        <th scope="col" class="text-center">STRUK</th>
         <th scope="col" class="text-center">KWITANSI</th>
     </tr>
     </thead>
@@ -16,7 +15,6 @@
             <td>{{ $tb->category->nama_kategori }}</td>
             <td>Rp.{{ $tb->nominal }}</td>
             <td>{{ $tb->created_at }}</td>
-            <td class="text-center"><a href="{{ asset('storage/image/struk/'.$tb->struk) }}" target="_blank"><i class="fa fa-2x fa-file-invoice"></i></a></td>
             <td class="text-center"><a href="{{ asset('storage/image/kwitansi/'.$tb->kwitansi) }}" target="_blank"><i class="fa fa-2x fa-receipt"></i></a></td>
         </tr>
         @empty

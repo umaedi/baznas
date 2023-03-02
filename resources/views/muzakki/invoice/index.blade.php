@@ -50,7 +50,6 @@
                           <input type="email" class="form-control" id="email" value="{{ $invoice->category->nama_kategori }}" readonly/>
                       </div>
                   </div>
-                  <a href="{{ route('muzakki.dashboard') }}" class="btn btn-primary btn-icon icon-left"><i class="fa fa-arrow-left"></i></a>
                   <button id="pay-button" class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Bayar Sekarang</button>
               </div>
             </div>
@@ -73,6 +72,7 @@
                     /* You may add your own js here, this is just example */
                     // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                     console.log(result)
+                    window.location.href = "{{ url('/pembayaran_sukses') }}";
                 },
                 // Optional
                 onPending: function(result) {

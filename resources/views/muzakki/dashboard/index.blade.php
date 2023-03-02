@@ -131,7 +131,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="inputState">ZIS(Zakat, Infaq, Shodaqoh)</label>
                                         <select id="inputState" class="form-control" name="category_id">
-                                            <option value="null">--PILIH KATEGORI ZAKAT--</option>
+                                            <option value="">--PILIH KATEGORI ZAKAT--</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->nama_kategori }}</option>
                                             @endforeach
