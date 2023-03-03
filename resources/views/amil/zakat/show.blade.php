@@ -5,7 +5,7 @@
       <div class="section-header">
         <h1>{{ __("Detail Zakat") }}</h1>
         <div class="section-header-breadcrumb">
-          <div class="breadcrumb-item active"><a href="{{ route('muzakki.dashboard') }}">Dashboard</a></div>
+          <div class="breadcrumb-item active"><a href="{{ route('amil.dashboard') }}">Dashboard</a></div>
           <div class="breadcrumb-item">Detail Zakat</div>
         </div>
       </div>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="name">Jumlah/Nominal</label>
-                        <input type="text" name="nominal" class="form-control" value="{{ $invoice->nominal }}" readonly/>
+                        <input type="text" name="nominal" class="form-control" value="{{ formatRupiah($invoice->nominal) }}" readonly/>
                     </div>
                     <div class="form-group col-md-12">
                     <form action="/amil/konfirmasi_zakat/{{ $invoice->id }}" method="POST" enctype="multipart/form-data">

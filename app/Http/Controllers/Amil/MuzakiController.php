@@ -50,7 +50,7 @@ class MuzakiController extends Controller
                 $invoice->where('bulan', \request()->bulan);
             }
 
-            $data['table'] = $invoice->where('muzakki_id', $id)->where('tahun', $tahun)->paginate($page);
+            $data['table'] = $invoice->where('muzakki_id', $id)->where('payment_status', 2)->where('tahun', $tahun)->whereNotNull('kwitansi')->paginate($page);
             return view('amil.invoice._data_table', $data);
         }
 

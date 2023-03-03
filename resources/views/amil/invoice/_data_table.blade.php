@@ -7,7 +7,7 @@
         <th scope="col">NOMINAL</th>
         <th scope="col">TANGGAL</th>
         <th scope="col">STATUS</th>
-        {{-- <th scope="col">LIHAT</th> --}}
+        <th scope="col">KWITANSI</th>
     </tr>
     </thead>
     <tbody id="data-barang">
@@ -16,13 +16,10 @@
             <th>{{ $table->firstItem() + $key }}</th>
             <td>{{ $tb->muzakki->name }}</td>
             <td>{{ $tb->category->nama_kategori }}</td>
-            <td>Rp.{{ $tb->nominal }}</td>
+            <td>{{ formatRupiah($tb->nominal) }}</td>
             <td>{{ $tb->created_at }}</td>
-            @if ($tb->status == '2')
             <td class="text-center"><a href="#" class="btn btn-icon btn-success"><i class="fas fa-check"></i></a></td>
-            @else
-            <td class="text-center"><a href="#" class="btn btn-icon btn-danger"><i class="fas fa-times"></i></a></td>
-            @endif
+            <td class="text-center"><a href="{{ asset('storage/image/kwitansi/'.$tb->kwitansi) }}" target="_blank"><i class="fa fa-2x fa-receipt"></i></a></td>
         </tr>
         @empty
         <tr>

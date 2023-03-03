@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Muzakki;
 
 use App\Models\Invoice;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Midtrans\CreateSnapTokenService;
@@ -29,7 +30,7 @@ class InvociceController extends Controller
             $date = date('H:i:s');
             $moon = date('n');
             $year = date('Y');
-            $no_invoice = date('Y-m-d') . rand(100, 999);
+            $no_invoice =  strtoupper(Str::random('6'));
 
             $invoice->update([
                 'muzakki_id'    => $muzakki_id,
@@ -62,7 +63,7 @@ class InvociceController extends Controller
         $date = date('H:i:s');
         $moon = date('n');
         $year = date('Y');
-        $no_invoice = date('Y-m-d') . rand(100, 999);
+        $no_invoice = strtoupper(Str::random('6'));
 
         $invoice = Invoice::create([
             'muzakki_id'    => $muzakki_id,

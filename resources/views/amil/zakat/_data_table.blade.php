@@ -15,7 +15,7 @@
             <th>{{ $table->firstItem() + $key }}</th>
             <td>{{ $tb->muzakki->name }}</td>
             <td>{{ $tb->category->nama_kategori }}</td>
-            <td>Rp.{{ $tb->nominal }}</td>
+            <td>{{ formatRupiah($tb->nominal) }}</td>
             <td>{{ $tb->created_at }}</td>
             <td><a href="/amil/zakat/invoice/{{ $tb->id }}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a></td>
         </tr>

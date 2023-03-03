@@ -43,7 +43,7 @@
                   <div class="form-row">
                       <div class="form-group col-md-6">
                           <label for="name">Jumlah/Nominal</label>
-                          <input type="text" name="nominal" class="form-control" value="{{ $invoice->nominal }}" readonly/>
+                          <input type="text" name="nominal" class="form-control" value="{{ formatRupiah($invoice->nominal) }}" readonly/>
                       </div>
                       <div class="form-group col-md-6">
                           <label for="inputState">ZIS(Zakat, Infaq, Shodaqoh)</label>
@@ -60,7 +60,7 @@
   </div>
 @endsection
 @push('js')
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+<script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
     <script>
         const payButton = document.querySelector('#pay-button');
         payButton.addEventListener('click', function(e) {

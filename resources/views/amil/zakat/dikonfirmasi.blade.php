@@ -14,7 +14,7 @@
             <div class="section-body">
                 <h2 class="section-title">Assalamualikum, Amil</h2>
                 <p class="section-lead">
-                  Ini adalah data total zakat yang di konfirmasi dan ditolak.
+                  Ini adalah data total zakat yang di konfirmasi.
                 </p>
                 <hr>
                 <div class="row mb-3">

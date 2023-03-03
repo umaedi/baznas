@@ -16,7 +16,7 @@
             <th>{{ $table->firstItem() + $key }}</th>
             <td>{{ $tb->muzakki->name }}</td>
             <td>{{ $tb->category->nama_kategori }}</td>
-            <td>Rp.{{ $tb->nominal }}</td>
+            <td>{{ formatRupiah($tb->nominal) }}</td>
             <td>{{ $tb->created_at }}</td>
             <td>{{ $tb->muzakki->dinas->nama_dinas }}</td>  
             <td class="text-center"><a href="#" class="btn btn-icon btn-success"><i class="fas fa-check"></i></a></td>
