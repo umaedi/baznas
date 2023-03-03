@@ -15,8 +15,8 @@
             <th>{{ $table->firstItem() + $key }}</th>
             <td>{{ $tb->name }}</td>
             <td>{{ $tb->email }}</td>
-            <td><a href="https://api.whatsapp.com/send?phone={{ $tb->no_tlp }}" target="_blank">{{ $tb->no_tlp }}</a></td>
-            <td>{{ $tb->dinas->nama_dinas }}</td>
+            <td><a href="https://api.whatsapp.com/send?phone={{ $tb->no_tlp }}" target="_blank">{{ $tb->no_tlp ?? '-'}}</a></td>
+            <td>{{ $tb->dinas->nama_dinas ?? '-' }}</td>
             <td><a href="/amil/muzakki/show/{{ $tb->id }}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a></td>
         </tr>
         @empty
