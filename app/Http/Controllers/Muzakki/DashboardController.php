@@ -20,6 +20,7 @@ class DashboardController extends Controller
     {
         $muzakki = Muzakki::with('dinas')->where('id', auth()->guard('muzakki')->user()->id)->first();
         $categories = Category::select('id', 'nama_kategori')->get();
+
         $invoices = Invoice::where('muzakki_id', auth()->guard('muzakki')->user()->id)->where('payment_status', '2')->count();
         $pending = Invoice::where('muzakki_id', auth()->guard('muzakki')->user()->id)->where('payment_status', '1')->count();
 

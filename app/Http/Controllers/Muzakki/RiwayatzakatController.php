@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Muzakki;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Invoice;
-use Illuminate\Http\Request;
 
 class RiwayatzakatController extends Controller
 {
