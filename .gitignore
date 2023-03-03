@@ -1,5 +1,6 @@
 /node_modules
 /public/hot
+/resources/views/layouts/app.blade.php
 /public/storage
 /storage/*.key
 /vendor

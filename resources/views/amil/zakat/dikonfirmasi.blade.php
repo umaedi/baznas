@@ -18,19 +18,12 @@
                 </p>
                 <hr>
                 <div class="row mb-3">
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-4 mb-3">
                         <select class="form-control" id="category" name="category">
                             <option value="">--KATEGORI--</option>
                             @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->nama_kategori }}</option>
                             @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-2 mb-3">
-                        <select class="form-control" id="status" name="status">
-                            <option value="2">--VERIF--</option>
-                            <option value="2">Dikonfirmasi</option>
-                            <option value="3">Ditolak</option>
                         </select>
                     </div>
                     <div class="col-md-2 mb-3">

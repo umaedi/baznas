@@ -18,7 +18,7 @@ class DashboardController extends Controller
     public function __invoke(Request $request)
     {
         $muzakkis = Muzakki::count();
-        $invoices = Invoice::where('status', '2')->orWhere('status', '3')->count();
+        $invoices = Invoice::where('payment_status', '2')->whereNotNull('kwitansi')->count();
         return view('amil.dashboard.index', compact('muzakkis', 'invoices'));
     }
 }

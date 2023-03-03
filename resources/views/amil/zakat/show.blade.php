@@ -18,7 +18,7 @@
             <div class="section-body">
                 <h2 class="section-title">Detail Zakat</h2>
                 <p class="section-lead">
-                  Ini adalah detail zakat {{ $invoice->muzakki->name }}, silakan dicek, klik konfirmasi unutk menerima atau tolak untuk menolak
+                  Ini adalah detail zakat {{ $invoice->muzakki->name }}, silakan dicek, pilih kwitansi lalu klik konfirmasi
                 </p>
                 <hr>
                 <div class="form-row">
@@ -46,21 +46,15 @@
                         <label for="inputState">ZIS(Zakat, Infaq, Shodaqoh)</label>
                         <input type="email" class="form-control" id="email" value="{{ $invoice->category->nama_kategori }}" readonly/>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-6">
                         <label for="name">Jumlah/Nominal</label>
                         <input type="text" name="nominal" class="form-control" value="{{ $invoice->nominal }}" readonly/>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="name">Struk</label>
-                        <div class="text-center">
-                            <a href="{{ asset('storage/image/struk/'.$invoice->struk) }}" target="_blank" class="form-control btn-primary">Lihat Struk</a>
-                        </div>
                     </div>
                     <div class="form-group col-md-12">
                     <form action="/amil/konfirmasi_zakat/{{ $invoice->id }}" method="POST" enctype="multipart/form-data">
                         @method('put')
                         @csrf
-                            <label for="name">Pilih Kwitansi Jika Anda ingin mengkorimasi data ini</label>
+                            <label for="name">Pilih Kwitansi Jika Anda ingin mengkonfirmasi data ini</label>
                             <input type="file" name="kwitansi" class="form-control" required>    
                         </div>
                 </div>        

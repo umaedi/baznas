@@ -25,7 +25,6 @@ class KonfirmasizakatController extends Controller
         $kwitansi->storeAs('public/image/kwitansi', $kwitansi->hashName());
 
         $invoice->update([
-            'status'    => '2',
             'kwitansi'  => $kwitansi->hashName()
         ]);
 

@@ -13,8 +13,8 @@ class ZakatController extends Controller
     {
         if (\request()->ajax()) {
             $invoice = Invoice::query();
-            $invoice->where('status', '1');
-            $data['table'] = $invoice->paginate();
+            $invoice->where('payment_status', '2');
+            $data['table'] = $invoice->whereNull('kwitansi')->paginate();
             return view('amil.zakat._data_table', $data);
         };
         return view('amil.zakat.index');
@@ -24,7 +24,7 @@ class ZakatController extends Controller
     {
         if (\request()->ajax()) {
             $invoice = Invoice::findOrfail($id);
-            $invoice->update(['status' => \request()->status]);
+            $invoice->update(['payment_status' => \request()->status]);
             return response()->json(\request()->status);
         };
 
@@ -39,7 +39,7 @@ class ZakatController extends Controller
             $invoice = Invoice::query();
 
             $page = \request()->get('paginate', 12);
-            $status = \request()->get('status', '2');
+            $status = \request()->get('payment_status', '2');
             $tahun = \request()->get('tahun', date('Y'));
 
             if (\request('category')) {
@@ -50,9 +50,9 @@ class ZakatController extends Controller
                 $invoice->where('bulan', \request()->bulan);
             }
 
-            $invoice->where('status', $status);
+            $invoice->where('payment_status', $status);
 
-            $data['table'] = $invoice->where('tahun', $tahun)->latest()->paginate($page);
+            $data['table'] = $invoice->where('tahun', $tahun)->whereNotNull('kwitansi')->latest()->paginate($page);
             return view('amil.zakat._data_table_confirm', $data);
         };
 

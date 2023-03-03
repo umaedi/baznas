@@ -46,4 +46,4 @@
         @endforelse
     </tbody>
 </table>
-{{$table->links('pagination.stisla-paging')}}
+{{-- {{$table->links('pagination.stisla-paging')}} --}}
