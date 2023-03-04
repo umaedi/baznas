@@ -46,6 +46,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Riwayat Zakat</h4>
+                        <div class="export ml-auto">
+                            <button id="export" class="btn btn-primary">Export</button>
+                        </div>
                     </div>
                     <div class="card-body">
                               <div class="row mb-3">
@@ -77,7 +80,7 @@
                                 <div class="col-md-3">
                                     <?php $start = date('Y'); $end = 2022?>
                                     <select class="form-control" id="tahun" name="tahun">
-                                        <option value="{{ date('Y') }}">--TAHUN--</option>
+                                        <option value="">--TAHUN--</option>
                                         <?php for($i=$end; $i<=$start; $i++) { ?>
                                             <option value="{{ $i }}"> <?php echo ucwords($i); ?> </option>
                                          <?php } ?>
@@ -132,6 +135,10 @@
         $('#perPage').change(function() {
             filterTable();
         });
+
+        $('#export').click(function() {
+            exportTable();
+        });
     });
 
     async function transAjax(data) {
@@ -174,6 +181,18 @@
             }).catch((err) => {
                 console.log('error');
         });
+    }
+
+    function exportTable() {
+        category = $('#category').val();
+        bulan = $('#bulan').val();
+        tahun = $('#tahun').val();
+        exportData()
+    }
+
+    async function exportData()
+    {
+        window.location.href = '/amil/zakat/export/{{ $id_muzakki }}?category='+category+'&bulan='+bulan+'&tahun='+tahun;
     }
 
     function loadPaginate(to) {

@@ -35,11 +35,13 @@ Route::prefix('amil')->group(function () {
             Route::get('/zakat/perlu_dikonfirmasi', 'index')->name('amil.zakat.needconfirm');
             Route::get('/zakat/dikonfirmasi', 'zakat_confirm')->name('zakat_confirm');
             Route::get('/zakat/invoice/{id}', 'show')->name('amil.invoice.show');
+            Route::get('/zakat/export/{id}', 'export')->name('amil.zakat.export');
         });
 
         Route::controller(MuzakiController::class)->group(function () {
             Route::get('/muzakki', 'index')->name('amil.muzakki');
             Route::get('/muzakki/show/{id}', 'show')->name('amil.muzakki.show');
+            Route::get('/muzakki/export', 'export')->name('amil.muzakki.export');
         });
 
         Route::put('/konfirmasi_zakat/{id}', KonfirmasizakatController::class);

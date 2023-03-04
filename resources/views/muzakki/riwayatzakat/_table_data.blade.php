@@ -13,7 +13,7 @@
         <tr>
             <th>{{ $table->firstItem() + $key }}</th>
             <td>{{ $tb->category->nama_kategori }}</td>
-            <td>Rp.{{ $tb->nominal }}</td>
+            <td>{{ formatRupiah($tb->nominal) }}</td>
             <td>{{ $tb->created_at }}</td>
             @if ($tb->kwitansi !== null)
             <td class="text-center"><a href="{{ asset('storage/image/kwitansi/'.$tb->kwitansi) }}" target="_blank"><i class="fa fa-2x fa-receipt"></i></a></td>

@@ -38,7 +38,7 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <button class="form-control btn btn-primary">EXPORT</button>
+                        <a href="{{ route('amil.muzakki.export') }}" class="form-control btn btn-primary">EXPORT</a>
                     </div>
                   </div>
 

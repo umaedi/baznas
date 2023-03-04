@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Amil;
 
+use App\Exports\ZakatExport;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Invoice;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ZakatController extends Controller
 {
@@ -59,5 +62,27 @@ class ZakatController extends Controller
         $categories = Category::select('id', 'nama_kategori')->get();
         $title = 'Total Zakat Keseluruhan';
         return view('amil.zakat.dikonfirmasi', compact('categories', 'title'));
+    }
+
+    public function export($id)
+    {
+
+        $invoice = Invoice::query();
+
+        if (\request()->category) {
+            $invoice->where('category_id', \request()->category);
+        }
+
+        if (\request()->tahun) {
+            $invoice->where('tahun', \request()->tahun);
+        }
+
+        if (\request()->bulan) {
+            $invoice->where('bulan', \request()->bulan);
+        }
+
+        $zakat = $invoice->where('muzakki_id', $id)->where('payment_status', 2)->whereNotNull('kwitansi')->get();
+
+        return Excel::download(new ZakatExport($zakat), 'data-zakat-' . Carbon::now() . '.xlsx');
     }
 }

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Amil;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Invoice;
 use App\Models\Muzakki;
+use App\Models\Category;
+use App\Exports\MuzakkiExport;
+use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MuzakiController extends Controller
 {
@@ -40,7 +43,6 @@ class MuzakiController extends Controller
             $invoice = Invoice::query();
 
             $page = \request()->get('pagination', 12);
-            $tahun = \request()->get('tahun', date('Y'));
 
             if (\request('category')) {
                 $invoice->where('category_id', \request()->category);
@@ -50,13 +52,33 @@ class MuzakiController extends Controller
                 $invoice->where('bulan', \request()->bulan);
             }
 
-            $data['table'] = $invoice->where('muzakki_id', $id)->where('payment_status', 2)->where('tahun', $tahun)->whereNotNull('kwitansi')->paginate($page);
+            if (\request('tahun')) {
+                $invoice->where('tahun', \request()->tahun);
+            }
+
+            $data['table'] = $invoice->where('muzakki_id', $id)->where('payment_status', 2)->whereNotNull('kwitansi')->paginate($page);
             return view('amil.invoice._data_table', $data);
         }
 
         $muzakki = Muzakki::findOrfail($id);
         $categories = Category::select('id', 'nama_kategori')->get();
         $title = 'Detail Muzakki';
-        return view('amil.muzakki.show', compact('muzakki', 'title', 'categories'));
+        return view('amil.muzakki.show', [
+            'id_muzakki'    => $id,
+            'muzakki'       => $muzakki,
+            'categories'    => $categories,
+            'title'         => $title,
+        ]);
+    }
+
+    public function export(Request $request)
+    {
+        if ($request->status) {
+            $muzakki = Muzakki::with('dinas')->where('dinas_id', $$request->dinas_id)->get();
+            return Excel::download(new MuzakkiExport($muzakki), 'data-muzakki-' . Carbon::now() . '.xlsx');
+        }
+
+        $muzakki = Muzakki::with('dinas')->get();
+        return Excel::download(new MuzakkiExport($muzakki), 'data-muzakki-' . Carbon::now() . '.xlsx');
     }
 }
