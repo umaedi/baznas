@@ -43,7 +43,6 @@ class ZakatController extends Controller
 
             $page = \request()->get('paginate', 12);
             $status = \request()->get('payment_status', '2');
-            $tahun = \request()->get('tahun', date('Y'));
 
             if (\request('category')) {
                 $invoice->where('category_id', \request()->category);
@@ -53,9 +52,13 @@ class ZakatController extends Controller
                 $invoice->where('bulan', \request()->bulan);
             }
 
+            if (\request()->tahun) {
+                $invoice->where('tahun', request()->tahun);
+            }
+
             $invoice->where('payment_status', $status);
 
-            $data['table'] = $invoice->where('tahun', $tahun)->whereNotNull('kwitansi')->latest()->paginate($page);
+            $data['table'] = $invoice->whereNotNull('kwitansi')->latest()->paginate($page);
             return view('amil.zakat._data_table_confirm', $data);
         };
 

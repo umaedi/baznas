@@ -4,8 +4,10 @@ use App\Http\Controllers\Amil\DashboardController;
 use App\Http\Controllers\Amil\KonfirmasizakatController;
 use App\Http\Controllers\Amil\MuzakiController;
 use App\Http\Controllers\Amil\ProfileController;
+use App\Http\Controllers\Amil\TotalzakatController;
 use App\Http\Controllers\Amil\ZakatController;
 use App\Http\Controllers\Muzakki\AyozakatController;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +47,8 @@ Route::prefix('amil')->group(function () {
         });
 
         Route::put('/konfirmasi_zakat/{id}', KonfirmasizakatController::class);
+
+        Route::get('/totalzakat/export', [TotalzakatController::class, 'export'])->name('amil.totalzakat.export');
     });
 });
 

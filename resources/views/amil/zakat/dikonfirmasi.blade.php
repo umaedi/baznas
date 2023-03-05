@@ -17,6 +17,8 @@
                   Ini adalah data total zakat yang di konfirmasi.
                 </p>
                 <hr>
+                <form action="{{ route('amil.totalzakat.export') }}" method="GET">
+                    @csrf
                 <div class="row mb-3">
                     <div class="col-md-4 mb-3">
                         <select class="form-control" id="category" name="category">
@@ -46,7 +48,7 @@
                     <div class="col-md-2">
                         <?php $start = date('Y'); $end = 2022?>
                         <select class="form-control" id="tahun" name="tahun">
-                            <option value="{{ date('Y') }}">--TAHUN--</option>
+                            <option value="">--TAHUN--</option>
                             <?php for($i=$end; $i<=$start; $i++) { ?>
                                 <option value="{{ $i }}"> <?php echo ucwords($i); ?> </option>
                              <?php } ?>
@@ -62,10 +64,10 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                       <button class=" form-control btn btn-primary">EXPORT</button>
+                       <button type="submit" class=" form-control btn btn-primary">EXPORT</button>
                     </div>
                   </div>
-
+                </form>
                 <div class="table-responsive" id="x-data-table">
                     
                 </div>
@@ -83,7 +85,7 @@
     var paginate = 12;
     var category = '';
     var status = '2';
-    var tahun = new Date().getFullYear();
+    var tahun = '';
     var bulan = '';
     var search = '';
 
