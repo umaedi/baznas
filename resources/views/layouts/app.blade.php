@@ -15,9 +15,9 @@
   <link rel="stylesheet" href="{{ asset('css') }}/fakeLoader.min.css">
 
   <!-- PWA  -->
-  <link rel="apple-touch-icon" href="{{ asset('/img/icon/lc_icon_baznas.png') }}">
+  <link rel="apple-touch-icon" href="{{ asset('/img/icon/lc_icon_xbaznas.png') }}">
   <link rel="manifest" href="{{ asset('/manifest.json') }}">
-  
+
   @stack('css')
   @vite([])
 </head>

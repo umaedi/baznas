@@ -9,7 +9,7 @@
     "theme_color": "#0a5414",
     "icons": [
         {
-            "src": "/img/icon/lc_icon_baznas.png",
+            "src": "/img/icon/lc_icon_xbaznas.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
