@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="{{ asset('css') }}/style.css">
 
   <!-- PWA  -->
-  @laravelPWA
   @stack('css')
   {{-- @vite([]) --}}
 </head>

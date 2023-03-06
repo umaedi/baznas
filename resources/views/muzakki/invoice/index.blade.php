@@ -33,11 +33,11 @@
                   <div class="form-row">
                       <div class="form-group col-md-6">
                           <label for="name">No HP</label>
-                          <input type="text" class="form-control"  id="name" value="{{ $invoice->muzakki->no_tlp }}" readonly/>
+                          <input type="text" class="form-control"  id="name" value="{{ $invoice->muzakki->no_tlp ?? '-' }}" readonly/>
                       </div>
                       <div class="form-group col-md-6">
                           <label for="email">Status</label>
-                          <input type="email" class="form-control" id="email" value="{{ $invoice->muzakki->dinas->nama_dinas }}" readonly/>
+                          <input type="email" class="form-control" id="email" value="{{ $invoice->muzakki->dinas->nama_dinas ?? '-' }}" readonly/>
                       </div>
                   </div>
                   <div class="form-row">

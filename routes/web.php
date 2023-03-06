@@ -7,7 +7,6 @@ use App\Http\Controllers\Amil\ProfileController;
 use App\Http\Controllers\Amil\TotalzakatController;
 use App\Http\Controllers\Amil\ZakatController;
 use App\Http\Controllers\Muzakki\AyozakatController;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
