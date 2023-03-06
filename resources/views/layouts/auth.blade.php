@@ -14,8 +14,7 @@
   <link rel="stylesheet" href="{{ asset('css') }}/style.css">
 
   <!-- PWA  -->
-{{-- <link rel="apple-touch-icon" href="{{ asset('img/icon/lc_icon_baznas.png') }}">
-<link rel="manifest" href="{{ asset('/manifest.json') }}"> --}}
+  @laravelPWA
   @stack('css')
   {{-- @vite([]) --}}
 </head>

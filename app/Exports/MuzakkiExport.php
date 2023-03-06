@@ -29,8 +29,8 @@ class MuzakkiExport implements FromCollection, WithMapping, WithHeadings
         return [
             $muzakki->name,
             $muzakki->email,
-            $muzakki->no_tlp,
-            $muzakki->dinas->nama_dinas,
+            $muzakki->no_tlp ?? '-',
+            $muzakki->dinas->nama_dinas ?? '-',
         ];
     }
 

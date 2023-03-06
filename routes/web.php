@@ -103,3 +103,7 @@ Route::post('payments/midtrans-notification', [\App\Http\Controllers\Muzakki\Pay
 Route::get('/pembayaran_sukses', [\App\Http\Controllers\Muzakki\PaymentCallbackController::class, 'success']);
 
 Route::get('/ayozakat', AyozakatController::class);
+
+Route::get('/offline', function () {
+    return view('offline');
+});
