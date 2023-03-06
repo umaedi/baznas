@@ -13,6 +13,11 @@
   <link rel="stylesheet" href="{{ asset('css') }}/style.css">
   <link rel="stylesheet" href="{{ asset('css') }}/components.css">
   <link rel="stylesheet" href="{{ asset('css') }}/fakeLoader.min.css">
+
+  <!-- PWA  -->
+  <link rel="apple-touch-icon" href="{{ asset('/img/icon/lc_icon_baznas.png') }}">
+  <link rel="manifest" href="{{ asset('/manifest.json') }}">
+  
   @stack('css')
   @vite([])
 </head>
@@ -47,6 +52,16 @@
     });
   </script>
    <div class="fakeLoader"></div>
+
+<script src="{{ asset('/sw.js') }}"></script>
+<script>
+    if (!navigator.serviceWorker.controller) {
+        navigator.serviceWorker.register("/sw.js").then(function (reg) {
+            console.log("Service worker has been registered for scope: " + reg.scope);
+        });
+    }
+</script>
+
  <script>
     function logOut()
     {

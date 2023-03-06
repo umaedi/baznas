@@ -81,12 +81,13 @@
                 <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         @if (auth()->guard('muzakki')->user()->dinas_id == null || auth()->guard('muzakki')->user()->no_tlp == null)
-                        <div class="alert alert-warning">Mohon untuk melengkapi data diri Anda. <a href="{{ route('muzakki.profile') }}">klik disini</a></div>
+                        <div class="alert alert-primary">Mohon untuk melengkapi data diri Anda. <a href="{{ route('muzakki.profile') }}">klik disini</a></div>
                         @endif
 
                         @if (session()->has('error'))
                             <div class="alert alert-warning">{{ session('error') }}</div>
                         @endif
+
                         <div class="card-header">
                             <h4>FORMULIR PEMBAYARAN ZAKAT</h4>
                         </div>
@@ -106,7 +107,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="name">No HP</label>
-                                        <input type="number" class="form-control"  id="name" value="{{ $muzakki->no_tlp ?? '' }}" readonly/>
+                                        <input type="number" class="form-control"  id="name" value="{{ $muzakki->no_tlp ?? '-' }}" readonly/>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="email">Status</label>
@@ -138,15 +139,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                @if (auth()->guard('muzakki')->user()->dinas_id == null || auth()->guard('muzakki')->user()->no_tlp == null)
-                                <a href="javascript:void()" onclick="alertPay()" class="btn btn-primary">
-                                    {{ __('BAYAR') }}
-                                </a>
-                                @else
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('BAYAR') }}
                                 </button>
-                                @endif
                             </form>
                         </div>
                     </div>
@@ -158,7 +153,6 @@
 @endsection
 @push('js')
 <script src="{{ asset('js') }}/jquery.mask.min.js"></script>
-<script src="{{ asset('js') }}/sweet_alert.min.js"></script>
 <script>
     $('input[name=nominal]').mask('000.000.000.000', {reverse: true});
 </script>
@@ -176,14 +170,5 @@
             document.getElementById("clock").innerHTML = (sh.length==1?"0"+sh:sh) + ":" + (sm.length==1?"0"+sm:sm) + ":" + (ss.length==1?"0"+ss:ss);
             }
         });
-
-        function alertPay()
-        {
-            swal("", "Mohon lengkapi data diri Anda", "warning"
-            ) 
-            .then(() => {
-                window.location.href = "/muzakki/profile";
-            });
-        }
 </script>
 @endpush
