@@ -106,11 +106,11 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="name">No HP</label>
-                                        <input type="number" class="form-control"  id="name" value="{{ $muzakki->no_tlp }}" readonly/>
+                                        <input type="number" class="form-control"  id="name" value="{{ $muzakki->no_tlp ?? '' }}" readonly/>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="email">Status</label>
-                                        <input type="email" class="form-control" id="email" value="{{ $muzakki->dinas->nama_dinas ?? '' }}" readonly/>
+                                        <input type="email" class="form-control" id="email" value="{{ $muzakki->dinas->nama_dinas ?? '-' }}" readonly/>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -138,9 +138,15 @@
                                         </select>
                                     </div>
                                 </div>
+                                @if (auth()->guard('muzakki')->user()->dinas_id == null || auth()->guard('muzakki')->user()->no_tlp == null)
+                                <a href="javascript:void()" onclick="alertPay()" class="btn btn-primary">
+                                    {{ __('BAYAR') }}
+                                </a>
+                                @else
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('BAYAR') }}
                                 </button>
+                                @endif
                             </form>
                         </div>
                     </div>
@@ -152,6 +158,7 @@
 @endsection
 @push('js')
 <script src="{{ asset('js') }}/jquery.mask.min.js"></script>
+<script src="{{ asset('js') }}/sweet_alert.min.js"></script>
 <script>
     $('input[name=nominal]').mask('000.000.000.000', {reverse: true});
 </script>
@@ -169,5 +176,14 @@
             document.getElementById("clock").innerHTML = (sh.length==1?"0"+sh:sh) + ":" + (sm.length==1?"0"+sm:sm) + ":" + (ss.length==1?"0"+ss:ss);
             }
         });
+
+        function alertPay()
+        {
+            swal("", "Mohon lengkapi data diri Anda", "warning"
+            ) 
+            .then(() => {
+                window.location.href = "/muzakki/profile";
+            });
+        }
 </script>
 @endpush

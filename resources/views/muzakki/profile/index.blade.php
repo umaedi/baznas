@@ -56,7 +56,7 @@
                       </div>
                       <div class="form-group col-md-12 col-12">
                         <label>{{ __('No telpon') }}</label>
-                        <input type="text" class="form-control" value="{{ auth()->guard('muzakki')->user()->no_tlp }}" required="" name="no_tlp">
+                        <input type="text" class="form-control" value="{{ auth()->guard('muzakki')->user()->no_tlp }}" required="" placeholder="Masukan no telepon" name="no_tlp">
                       </div>
                       <div class="form-group col-md-12 col-12">
                         <div class="input-group">
