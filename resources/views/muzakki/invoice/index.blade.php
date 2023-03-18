@@ -15,11 +15,6 @@
           <div class="invoice-print">
             <div class="row">
               <div class="col-lg-12">
-                <div class="invoice-title">
-                  <h2>Invoice</h2>
-                </div>
-                <hr>
-
                   <div class="form-row">
                       <div class="form-group col-md-6">
                           <label for="name">Nama Lengkap</label>
@@ -50,7 +45,24 @@
                           <input type="email" class="form-control" id="email" value="{{ $invoice->category->nama_kategori }}" readonly/>
                       </div>
                   </div>
-                  <button id="pay-button" class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Bayar Sekarang</button>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="section-title">Metode Pembayaran</div>
+                      <p class="section-lead">Silakan Transfer melalui no rekening dibawah ini.</p>
+                      <div class="d-flex">
+                        <img class="img-fluid lazyload" data-src="{{ asset('img/logo/Logo_bank_Lampung_baru.png') }}" alt="logo bank lampung">
+                      </div>
+                        <div class="input-group mt-3 mb-2">
+                          <input type="text" class="form-control font-weight-bold" value="388 03.01 10079.0" id="noRekening">
+                          <div class="input-group-prepend" id="show_hide_password">
+                            <span class="input-group-text"><button onclick="copyNorek()" class="btn btn-primary">SALIN</button></span>
+                          </div>
+                        </div>
+                      <p>a.n <span class="font-weight-bold">ZAKAT BAZNAS TUBA</span></p>
+                      <p>* Setelah melakukan pembayaran silakan lakukan konfirmasi dengan menekan tombol dibawah ini.</p>
+                    </div>
+                  </div>
+                  <a href="{{ route('muzakki.konformasi') }}" class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Konfirmasi Pembayaran</a>
               </div>
             </div>
           </div>
@@ -60,33 +72,13 @@
   </div>
 @endsection
 @push('js')
-<script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
-    <script>
-        const payButton = document.querySelector('#pay-button');
-        payButton.addEventListener('click', function(e) {
-            e.preventDefault();
- 
-            snap.pay('{{ request('snapToken') }}', {
-                // Optional
-                onSuccess: function(result) {
-                    /* You may add your own js here, this is just example */
-                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                    console.log(result)
-                    window.location.href = "{{ url('/pembayaran_sukses') }}";
-                },
-                // Optional
-                onPending: function(result) {
-                    /* You may add your own js here, this is just example */
-                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                    console.log(result)
-                },
-                // Optional
-                onError: function(result) {
-                    /* You may add your own js here, this is just example */
-                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                    console.log(result)
-                }
-            });
-        });
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" async=""></script>
+    <script type="text/javascript"> 
+        function copyNorek() {
+          var norek = document.getElementById('noRekening');
+           norek.select();
+
+           norek.setSelectionRange(0, 99999);
+        }
     </script>
 @endpush

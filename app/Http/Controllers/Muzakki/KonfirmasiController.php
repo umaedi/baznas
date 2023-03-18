@@ -19,7 +19,7 @@ class KonfirmasiController extends Controller
             'struk' => 'required|image|file|max:2048'
         ]);
 
-        $invoice = Invoice::where('muzakki_id', auth()->guard('muzakki')->user()->id)->where('payment_status', '0')->first();
+        $invoice = Invoice::where('muzakki_id', auth()->guard('muzakki')->user()->id)->where('payment_status', '1')->first();
 
         if ($invoice) {
             $struk = $request->file('struk');
@@ -27,7 +27,7 @@ class KonfirmasiController extends Controller
 
             $invoice->update([
                 'struk'    => $struk->hashName(),
-                'status'   => '1'
+                'payment_status'   => '2'
             ]);
 
             return back()->with('success', 'Struk Pembayaran Berhasil di unggah');

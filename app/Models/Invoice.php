@@ -17,7 +17,7 @@ class Invoice extends Model
         'jam',
         'bulan',
         'tahun',
-        'status',
+        'payment_status',
         'struk',
         'kwitansi'
     ];

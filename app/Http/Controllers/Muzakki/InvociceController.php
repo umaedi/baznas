@@ -44,11 +44,7 @@ class InvociceController extends Controller
                 'payment_status'        => $invoice->payment_status
             ]);
 
-            //token 
-            $midtrans = new CreateSnapTokenService($invoice);
-            $snapToken = $midtrans->getSnapToken();
-
-            return redirect()->to('/muzakki/invoice?snapToken=' . $snapToken);
+            return view('muzakki.invoice.index', compact('invoice'));
         }
 
         $request->validate([
@@ -77,13 +73,6 @@ class InvociceController extends Controller
             'payment_status' => '1'
         ]);
 
-        //token 
-        $midtrans = new CreateSnapTokenService($invoice);
-        $snapToken = $midtrans->getSnapToken();
-
-        $invoice->snap_token = $snapToken;
-        $invoice->save();
-
-        return redirect()->to('/muzakki/invoice?snapToken=' . $snapToken);
+        return view('muzakki.invoice.index', compact('invoice'));
     }
 }

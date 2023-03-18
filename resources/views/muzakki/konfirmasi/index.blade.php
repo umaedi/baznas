@@ -50,7 +50,7 @@
                                 @endif
 
                                 @if (session()->has('success'))
-                                <a href="https://api.whatsapp.com/send?phone=6285741492045" target="_blank" class="btn btn-primary">
+                                <a href="https://api.whatsapp.com/send?phone={{ env('NO_TLP') }}" target="_blank" class="btn btn-primary">
                                     {{ __('KONFIRMASI VIA WHATSAPP') }}
                                 </a>
                                 @endif
