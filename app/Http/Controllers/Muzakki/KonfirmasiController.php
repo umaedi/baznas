@@ -30,7 +30,7 @@ class KonfirmasiController extends Controller
                 'payment_status'   => '2'
             ]);
 
-            return back()->with('success', 'Struk Pembayaran Berhasil di unggah');
+            return view('muzakki.payment.index');
         } else {
             return back()->with('error', 'Tidak ada pembayaran yang perlu di konfirmasi!');
         }

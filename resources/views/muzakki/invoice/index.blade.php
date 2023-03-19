@@ -52,14 +52,25 @@
                       <div class="d-flex">
                         <img class="img-fluid lazyload" data-src="{{ asset('img/logo/Logo_bank_Lampung_baru.png') }}" alt="logo bank lampung">
                       </div>
-                        <div class="input-group mt-3 mb-2">
-                          <input type="text" class="form-control font-weight-bold" value="388 03.01 10079.0" id="noRekening">
-                          <div class="input-group-prepend" id="show_hide_password">
-                            <span class="input-group-text"><button onclick="copyNorek()" class="btn btn-primary">SALIN</button></span>
+                      @if ($invoice->category_id !== '4')
+                          <div class="input-group mt-3 mb-2">
+                            <input type="text" class="form-control font-weight-bold" value="388 03.01 10079.0" id="noRekening">
+                            <div class="input-group-prepend" id="show_hide_password">
+                              <span class="input-group-text"><button onclick="copyNorek()" class="btn btn-primary">SALIN</button></span>
+                            </div>
                           </div>
-                        </div>
-                      <p>a.n <span class="font-weight-bold">ZAKAT BAZNAS TUBA</span></p>
-                      <p>* Setelah melakukan pembayaran silakan lakukan konfirmasi dengan menekan tombol dibawah ini.</p>
+                        <p>a.n <span class="font-weight-bold">ZAKAT BAZNAS TUBA</span></p>
+                        <p>* Setelah melakukan pembayaran silakan lakukan konfirmasi dengan menekan tombol dibawah ini.</p>
+                      @else
+                          <div class="input-group mt-3 mb-2">
+                            <input type="text" class="form-control font-weight-bold" value="388 03.01 10080.2" id="noRekening">
+                            <div class="input-group-prepend" id="show_hide_password">
+                              <span class="input-group-text"><button onclick="copyNorek()" class="btn btn-primary">SALIN</button></span>
+                            </div>
+                          </div>
+                        <p>a.n <span class="font-weight-bold">INFAQ SHADAQAH BAZNAS TUBA</span></p>
+                        <p>* Setelah melakukan pembayaran silakan lakukan konfirmasi dengan menekan tombol dibawah ini.</p>
+                      @endif
                     </div>
                   </div>
                   <a href="{{ route('muzakki.konformasi') }}" class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Konfirmasi Pembayaran</a>
