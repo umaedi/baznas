@@ -48,12 +48,9 @@ class InvociceController extends Controller
         }
 
         $request->validate([
-            'nominal'   => 'required'
+            'nominal'       => 'required',
+            'category_id'   => 'required'
         ]);
-
-        if ($request->category_id == 'null') {
-            return back()->with('error', 'Mohon pilih kategori zakat');
-        }
 
         $muzakki_id = auth()->guard('muzakki')->user()->id;
         $date = date('H:i:s');

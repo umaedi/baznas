@@ -131,12 +131,17 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputState">ZIS(Zakat, Infaq, Shodaqoh)</label>
-                                        <select id="inputState" class="form-control" name="category_id">
+                                        <select id="inputState" class="form-control @error('category_id') ? is-invalid @enderror" name="category_id">
                                             <option value="">--PILIH KATEGORI ZAKAT--</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->nama_kategori }}</option>
                                             @endforeach
                                         </select>
+                                        @error('category_id')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">
