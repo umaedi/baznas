@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@push('css')
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
+@endpush
 @section('content')
 <div class="main-content container">
     <section class="section">
@@ -14,7 +17,7 @@
         @if (session()->has('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
-        <div class="card-body">
+        <div class="card-body compact-gallery">
             <div class="section-body">
                 <h2 class="section-title">Detail Zakat</h2>
                 <p class="section-lead">
@@ -50,7 +53,11 @@
                         <label for="name">Jumlah/Nominal</label>
                         <input type="text" name="nominal" class="form-control" value="{{ formatRupiah($invoice->nominal) }}" readonly/>
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-6">
+                        <label for="name">Struk Pembayaran</label>
+                        <a href="{{ asset('storage/image/struk/' . $invoice->struk ) }}" class="btn btn-primary btn-block lightbox">Lihat</a>
+                    </div>
+                    <div class="form-group col-md-6">
                     <form action="/amil/konfirmasi_zakat/{{ $invoice->id }}" method="POST" enctype="multipart/form-data">
                         @method('put')
                         @csrf
@@ -69,6 +76,9 @@
 </div>
 @endsection
 @push('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+<script>baguetteBox.run('.compact-gallery',{animation:'slideIn'});</script>
+
     <script>
         $(() => {
             $('#tolak').click(function() {
